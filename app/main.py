@@ -1,8 +1,11 @@
-from fastapi.responses import RedirectResponse
 from fastapi import FastAPI
+from dash_app.dashboard import create_dashboard
+from fastapi.middleware.wsgi import WSGIMiddleware
 
-app = FastAPI()
+app = FastAPI(title="Wise DB Monitoring Tool")
 
-@app.get("/dashboard")
-def redirect_dashboard():
-    return RedirectResponse(url="/dashboard/")
+# Mount Dash dashboard
+dash_app = create_dashboard()
+app.mount("/", WSGIMiddleware(dash_app.server))
+
+

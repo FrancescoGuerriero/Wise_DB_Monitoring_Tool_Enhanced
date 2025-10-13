@@ -1,9 +1,21 @@
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker
+from app.config import settings
 
-DATABASE_URL = "postgresql+psycopg2://username:Strong123!?@localhost:5432/your_db"
+# ✅ Create SQLAlchemy engine
+engine = create_engine(settings.DATABASE_URL)
 
-engine = create_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
+# ✅ Create session factory
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+# ✅ Provide helper functions
+def get_engine():
+    return engine
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+
