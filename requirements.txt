@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+pandas
+scikit-learn
+pydantic
+pytest
+dash
+dash-bootstrap-components
+plotly

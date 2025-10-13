@@ -1,0 +1,9 @@
+query,execution_time,timestamp
+"SELECT * FROM users",120,1697100000
+"SELECT * FROM orders WHERE user_id=1",200,1697100300
+"SELECT * FROM products",150,1697100600
+"SELECT * FROM orders WHERE status='pending'",300,1697100900
+"SELECT name, email FROM users WHERE id=5",100,1697101200
+"SELECT * FROM products WHERE price>100",250,1697101500
+"SELECT * FROM orders WHERE created_at>'2025-01-01'",400,1697101800
+"SELECT * FROM users WHERE email LIKE '%@example.com'",180,1697102100
